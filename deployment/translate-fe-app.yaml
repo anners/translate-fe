@@ -1,0 +1,21 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: translate-fe
+  labels:
+    app: hello-world
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: hello-world
+        tier: fe
+        track: dev
+    spec:
+      volumes:
+      containers:
+      - name: hello-world-fe
+        image: anners/translate-fe:latest
+        ports:
+        - containerPort: 5002
