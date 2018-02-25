@@ -1,12 +1,16 @@
-
 <!DOCTYPE html>
-<h2> select a language </h2>
-<form action="/submit" method="GET">
-  <select name="lang" id="lang">
-    {% for language in languages %}
-    <option name="{{language['name']}}" value="{{language['language']}}">{{language['name']}}</option>
-    {% endfor %}
-  </select>
-  <br>
-  <input type="submit" value="Submit">
-</form>
+<link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='dropdown.css') }}"/>
+<div class="center-on-page">
+  <h1> Select a language </h1>
+  <form action="/submit" method="GET">
+    <div class="select">
+      <select name="lang" id="lang">
+        {% for language in languages %}
+        <option name="{{language['name']}}" value="{{language['language']}}">{{language['name']}}</option>
+        {% endfor %}
+      </select>
+  </div>
+    <br>
+    <input class="submitButton" type="submit" value="Submit">
+  </form>
+</div>

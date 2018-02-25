@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, send_file
 from google.cloud import translate
 import requests
 app = Flask(__name__)
@@ -18,6 +18,14 @@ def submit():
 @app.route('/health')
 def health():
     return 'healthly'
+
+@app.route("/image/<filename>")
+def get_image(filename):
+    return send_file(filename, mimetype='image/jpg')
+
+@app.errorhandler(404)
+def not_found(error):
+    return render_template('404.html')
 
 
 if __name__ == "__main__":
