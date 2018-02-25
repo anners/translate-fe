@@ -5,6 +5,7 @@ metadata:
 spec:
   selector:
     app: hello-world
+    tier: fe
   ports:
   - protocol: TCP
     port: 8080

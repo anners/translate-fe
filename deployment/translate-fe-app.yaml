@@ -13,9 +13,14 @@ spec:
         tier: fe
         track: dev
     spec:
-      volumes:
       containers:
       - name: hello-world-fe
         image: anners/translate-fe:latest
+        livenessProbe:
+          periodSeconds: 5
+          initialDelaySeconds: 2
+          httpGet:
+            path: /health
+            port: 5002
         ports:
         - containerPort: 5002
