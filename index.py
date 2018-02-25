@@ -13,7 +13,7 @@ def home():
 def submit():
     lang = request.args.get('lang')
     hello = requests.get('http://translate-service/hello/' + lang)
-    return hello.text
+    return render_template('hello.html', helloworld=hello.text)
 
 @app.route('/health')
 def health():
@@ -26,7 +26,6 @@ def get_image(filename):
 @app.errorhandler(404)
 def not_found(error):
     return render_template('404.html')
-
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5002)

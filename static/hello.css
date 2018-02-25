@@ -1,0 +1,15 @@
+body {
+  background: #B6D5ED;
+}
+.center-on-page {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+h1 {
+  text-align: center;
+  color: 	#7f95a5;
+  font-family: verdana;
+  font-size: 100px;
+}

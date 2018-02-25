@@ -1,6 +1,10 @@
 # translate-fe
 This is the frontend service for my quick kubernetes demo. This doesn't do much without the [backend service](https://github.com/anners/translate-be). This displays a drop down menu with multiple languages, lets the user select a language and sends the language choice to the backend service. It is assumed you can resolve the backend service via dns as translate-service. Using kubernetes this is handled by it's [dns service](https://github.com/kubernetes/dns/blob/master/docs/specification.md). You could easily add an entry in your /etc/hosts file for local testing.
 
+You will also need to set-up a service account and download the private JSON key. More information setting up Google Translate AP can be found [here](https://cloud.google.com/translate/docs/quickstart?csw=1).
+
+The backend code can be found [here](https://github.com/anners/translate-be).
+
 ## docker set-up
 This can be ran locally as a docker container.
 ```
@@ -20,6 +24,10 @@ python3 index.py
 Set up cluster with GKE (or any other way you prefer)
 ```
 gcloud container clusters create translate
+```
+Create a secret with your private key
+```
+kubectl create secret generic translate-key --from-file=key.json=<path-to-key>.json
 ```
 Create the deployment and service
 ```
