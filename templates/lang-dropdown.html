@@ -1,0 +1,12 @@
+
+<!DOCTYPE html>
+<h2> select a language </h2>
+<form action="/submit" method="GET">
+  <select name="lang" id="lang">
+    {% for language in languages %}
+    <option name="{{language['name']}}" value="{{language['language']}}">{{language['name']}}</option>
+    {% endfor %}
+  </select>
+  <br>
+  <input type="submit" value="Submit">
+</form>

@@ -1,10 +1,13 @@
 from flask import Flask, request, render_template
+from google.cloud import translate
 import requests
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('lang.html')
+    client = translate.Client()
+    languages = client.get_languages()
+    return render_template('lang-dropdown.html', languages=languages)
 
 @app.route('/submit')
 def submit():
