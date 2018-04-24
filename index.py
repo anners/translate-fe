@@ -3,6 +3,7 @@ from google.cloud import translate
 import requests
 app = Flask(__name__)
 
+# default route
 @app.route('/')
 def home():
     client = translate.Client()

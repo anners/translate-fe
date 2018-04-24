@@ -1,0 +1,9 @@
+apiVersion: skaffold/v1alpha2
+kind: Config
+build:
+  artifacts:
+  - imageName: anners/translate-fe
+deploy:
+  kubectl:
+    manifests:
+      - deployment/translate-fe-*

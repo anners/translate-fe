@@ -19,7 +19,7 @@ spec:
           secretName: translate-key
       containers:
       - name: hello-world-fe
-        image: anners/translate-fe:latest
+        image: anners/translate-fe
         livenessProbe:
           periodSeconds: 5
           initialDelaySeconds: 2

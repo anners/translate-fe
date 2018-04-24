@@ -40,3 +40,9 @@ kubectl [get|describe] deployments
 kubectl [get|describe] pods
 kubectl [get|describe] services
 ```
+
+## skaffold
+Skaffold is a ridiculously easy command line tool that facilitates continuous development for Kubernetes.
+For information on installing skaffold check out it's [GitHub page](https://github.com/GoogleContainerTools/skaffold).
+
+To use it for this project change the image name in skaffold.yaml and deployment/tanslate-fe-app.yaml to match your docker repo and simply run ```skaffold dev```
