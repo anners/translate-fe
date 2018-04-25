@@ -25,7 +25,8 @@ Set up cluster with GKE (or any other way you prefer)
 ```
 gcloud container clusters create translate
 ```
-Create a secret with your private key
+Create a secret with your private key, the deployment file assumes the key is named key.json. 
+If not, update the deployment file.
 ```
 kubectl create secret generic translate-key --from-file=key.json=<path-to-key>.json
 ```
