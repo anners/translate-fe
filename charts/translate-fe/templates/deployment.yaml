@@ -22,6 +22,12 @@ spec:
         - name: {{ .Values.secret.keyName }}
           secret:
             secretName: {{ .Values.secret.secretName }}
+      volumeMounts:
+      - name: {{ .Values.secret.keyName }}
+        mountPath: {{ .Values.secret.mountPath }}
+      env:
+      - name: GOOGLE_APPLICATION_CREDENTIALS
+        value: {{ .Values.secret.keyPath }}
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -35,9 +41,3 @@ spec:
         ports:
         - containerPort: {{ .Values.service.internalPort }}
         resources: {{ toYaml .Values.resources | indent 12 }}
-        volumeMounts:
-        - name: {{ .Values.secret.keyName }}
-          mountPath: {{ .Values.secret.mountPath }}
-        env:
-        - name: GOOGLE_APPLICATION_CREDENTIALS
-          value: {{ .Values.secret.keyPath }}
