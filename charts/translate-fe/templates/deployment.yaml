@@ -32,12 +32,13 @@ spec:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        livenessProbe:
-          periodSeconds: 5
-          initialDelaySeconds: 2
-          httpGet:
-            path: /health
-            port: {{ .Values.service.internalPort }}
-        ports:
-        - containerPort: {{ .Values.service.internalPort }}
-        resources: {{ toYaml .Values.resources | indent 12 }}
+      livenessProbe:
+        periodSeconds: 5
+        initialDelaySeconds: 2
+        httpGet:
+          path: /health
+          port: {{ .Values.service.internalPort }}
+      ports:
+      - containerPort: {{ .Values.service.internalPort }}
+        resources:
+{{ toYaml .Values.resources | indent 12 }}
