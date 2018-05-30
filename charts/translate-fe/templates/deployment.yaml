@@ -11,17 +11,33 @@ spec:
     metadata:
       labels:
         draft: {{ default "draft-app" .Values.draft }}
+        tier: {{ .Values.metadata.tier }}
         app: {{ template "fullname" . }}
 {{- if .Values.podAnnotations }}
       annotations:
 {{ toYaml .Values.podAnnotations | indent 8 }}
 {{- end }}
     spec:
+      volumes:
+        - name: {{ .Values.secret.keyName }}
+          secret:
+            secretName: {{ .Values.secret.secretName }}
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        livenessProbe:
+          periodSeconds: 5
+          initialDelaySeconds: 2
+          httpGet:
+            path: /health
+            port: {{ .Values.service.internalPort }}
         ports:
         - containerPort: {{ .Values.service.internalPort }}
-        resources:
-{{ toYaml .Values.resources | indent 12 }}
+        resources: {{ toYaml .Values.resources | indent 12 }}
+        volumeMounts:
+        - name: {{ .Values.secret.keyName }}
+          mountPath: {{ .Values.secret.mountPath }}
+        env:
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: {{ .Values.secret.keyPath }}
